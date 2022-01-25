@@ -37,7 +37,7 @@ public class NutManager : Singleton<NutManager>
         for (int i = 0; i < stack.Count - 1; i++)
         {
 
-            stack[i + 1].transform.DOMoveX(stack[i].transform.position.x, 0.2f).SetEase(Ease.InOutBounce);
+            stack[i + 1].transform.DOMoveX(stack[i].transform.position.x, 0.1f).SetEase(Ease.InOutBounce);
 
         }
     }

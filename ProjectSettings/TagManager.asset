@@ -9,6 +9,8 @@ TagManager:
   - sheldnut
   - stacked
   - NutBreaker
+  - Chocolate_Door
+  - NutCellMac
   layers:
   - Default
   - TransparentFX

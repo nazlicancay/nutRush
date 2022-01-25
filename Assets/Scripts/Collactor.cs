@@ -40,7 +40,7 @@ public class Collactor : MonoBehaviour
 
         _stackObj = other.gameObject;
 
-        _stackObj.transform.position = new Vector3(nutManager.nutTarget.transform.position.x, _stackObj.transform.position.y, lastItem.transform.position.z -0.5f);
+        _stackObj.transform.position = new Vector3(nutManager.nutTarget.transform.position.x, _stackObj.transform.position.y, lastItem.transform.position.z -0.2f);
         _stackObj.transform.parent = nutManager.nutTarget.transform;
 
         _stackObj.AddComponent<Collactor>();

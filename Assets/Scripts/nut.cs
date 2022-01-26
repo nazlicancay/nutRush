@@ -134,7 +134,6 @@ public class nut : MonoBehaviour
             nutManager.stack.Remove(gameObject);
 
             gameObject.transform.parent = HandTarget.transform;
-           
             nutManager.ReOrder();
             other.gameObject.tag = "Untagged";
         }

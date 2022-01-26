@@ -29,13 +29,12 @@ public class Collactor : MonoBehaviour
         other.gameObject.tag = "Untagged";
         if(nutManager.stack.Count != 0)
         {
-            //lastItem = CubeManager.cubeManagerInstanse.collactList.Last();
+            
             lastItem = nutManager.stack[nutManager.stack.Count - 1];
         }
 
         nutManager.stack.Add(other.gameObject);
-       // GameManager.gameManagerInstance.CoinNumber = CubeManager.cubeManagerInstanse.collactList.Count;
-
+     
 
 
         _stackObj = other.gameObject;

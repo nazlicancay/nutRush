@@ -23,7 +23,6 @@ public class PlayerCollitions : MonoBehaviour
         if (other.gameObject.CompareTag("nut"))
         {
 
-            Debug.Log("add nut");
             //nutManager.ReOrder();
             collactor.Collact(other.gameObject);
         }

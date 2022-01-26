@@ -11,6 +11,8 @@ TagManager:
   - NutBreaker
   - Chocolate_Door
   - NutCellMac
+  - Packer
+  - FireMachine
   layers:
   - Default
   - TransparentFX

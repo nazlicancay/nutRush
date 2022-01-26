@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class nut : MonoBehaviour
@@ -13,6 +14,8 @@ public class nut : MonoBehaviour
     public GameObject package;
     public NutState currentState;
     public List<GameObject> shelds = new List<GameObject>();
+    public NutManager nutManager;
+    public GameObject HandTarget;
 
 
 
@@ -46,9 +49,20 @@ public class nut : MonoBehaviour
         {
             currentState = NutState.nut;
             sheld.SetActive(false);
+           
             shattered.SetActive(true);
             Smash();
             sheldless_nut.SetActive(true);
+        }
+
+        if(newState == NutState.nut)
+        {
+            currentState = NutState.nut;
+            chocolate.SetActive(false);
+            nutChocolate.SetActive(false);
+            sheldless_nut.SetActive(true);
+
+
         }
 
         if (newState == NutState.chocolate && currentState == NutState.nut)
@@ -66,7 +80,7 @@ public class nut : MonoBehaviour
             nutChocolate.SetActive(true);
         }
 
-        if (newState == NutState.package)
+        if (newState == NutState.package && currentState == NutState.nutChocolate)
         {
             nutChocolate.SetActive(false);
             package.SetActive(true);
@@ -89,6 +103,42 @@ public class nut : MonoBehaviour
         {
             ChangeState(NutState.nutChocolate);
         }
+
+        if (other.gameObject.CompareTag("Packer"))
+        {
+            ChangeState(NutState.package);
+
+        }
+
+        if (other.gameObject.CompareTag("FireMachine") && (currentState == NutState.chocolate || currentState == NutState.nutChocolate))
+        {
+            ChangeState(NutState.nut);
+        }
+
+        if (other.gameObject.CompareTag("Punch"))
+        {
+            Debug.Log(gameObject.name);
+            for(int i =nutManager.stack.IndexOf(gameObject);i < nutManager.stack.Count; i++)
+            {
+                nutManager.stack.Remove(gameObject);
+                gameObject.transform.DOMoveX(-2, 3f);
+            }
+            NutManager.Instance.ReOrder();
+
+
+            other.gameObject.tag = "Untagged";
+        }
+
+        if (other.gameObject.CompareTag("Hand"))
+        {
+            nutManager.stack.Remove(gameObject);
+
+            gameObject.transform.parent = HandTarget.transform;
+           
+            nutManager.ReOrder();
+            other.gameObject.tag = "Untagged";
+        }
+        
     }
 
     public void Smash()
@@ -102,8 +152,14 @@ public class nut : MonoBehaviour
            Rigidbody rb = Gm.GetComponent<Rigidbody>();
          
            rb.AddExplosionForce(force , new Vector3( transform.position.x , transform.position.y, transform.position.z) ,range);
-            
+            shattered.transform.parent = null;
+          
         }
-       
+
+        //shattered.SetActive(false);
+
+
+
+
     }
 }

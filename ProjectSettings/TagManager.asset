@@ -13,6 +13,8 @@ TagManager:
   - NutCellMac
   - Packer
   - FireMachine
+  - Punch
+  - Hand
   layers:
   - Default
   - TransparentFX

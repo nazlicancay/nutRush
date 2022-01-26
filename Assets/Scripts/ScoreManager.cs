@@ -8,6 +8,7 @@ public class ScoreManager : Singleton<ScoreManager>
     // Start is called before the first frame update
     public int GameScore;
     public TextMeshProUGUI Text;
+    public NutManager nutManager;
 
     void Start()
     {
@@ -18,5 +19,10 @@ public class ScoreManager : Singleton<ScoreManager>
     void Update()
     {
         Text.text = GameScore.ToString(); 
+    }
+
+    public void CountScore()
+    {
+       
     }
 }

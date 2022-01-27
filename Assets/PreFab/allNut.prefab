@@ -1211,6 +1211,7 @@ MonoBehaviour:
   - {fileID: 3371140591159359454}
   nutManager: {fileID: 0}
   HandTarget: {fileID: 0}
+  scoreManager: {fileID: 0}
 --- !u!1 &5057198482731319677
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class PlayerCollitions : MonoBehaviour
     // Start is called before the first frame update
     public NutManager nutManager;
     public Collactor collactor;
+    public ScoreManager scoreManager;
     void Start()
     {
         
@@ -25,6 +26,7 @@ public class PlayerCollitions : MonoBehaviour
 
             //nutManager.ReOrder();
             collactor.Collact(other.gameObject);
+            scoreManager.CalculateScore();
         }
     }
 }

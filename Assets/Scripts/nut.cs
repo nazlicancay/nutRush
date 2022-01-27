@@ -16,6 +16,7 @@ public class nut : MonoBehaviour
     public List<GameObject> shelds = new List<GameObject>();
     public NutManager nutManager;
     public GameObject HandTarget;
+    public ScoreManager scoreManager;
 
 
 
@@ -40,7 +41,6 @@ public class nut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void ChangeState( NutState newState)
@@ -53,6 +53,7 @@ public class nut : MonoBehaviour
             shattered.SetActive(true);
             Smash();
             sheldless_nut.SetActive(true);
+            scoreManager.AddScore(10);
         }
 
         if(newState == NutState.nut)
@@ -71,6 +72,7 @@ public class nut : MonoBehaviour
             sheldless_nut.SetActive(false);
             sheld.SetActive(false);
             chocolate.SetActive(true);
+            scoreManager.AddScore(20);
         }
 
         if (newState == NutState.nutChocolate && currentState == NutState.chocolate)
@@ -78,14 +80,24 @@ public class nut : MonoBehaviour
             currentState = NutState.nutChocolate;
             chocolate.SetActive(false);
             nutChocolate.SetActive(true);
+            scoreManager.AddScore(30);
+        }
+
+        if (newState == NutState.package)
+        {
+            sheld.gameObject.SetActive(false);
+            sheldless_nut.gameObject.SetActive(false);
+            chocolate.gameObject.SetActive(false);
+            nutChocolate.SetActive(false);
+            package.SetActive(true);
+            
         }
 
         if (newState == NutState.package && currentState == NutState.nutChocolate)
         {
-            nutChocolate.SetActive(false);
-            package.SetActive(true);
+            scoreManager.AddScore(40);
         }
-    }
+        }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -110,23 +122,36 @@ public class nut : MonoBehaviour
 
         }
 
-        if (other.gameObject.CompareTag("FireMachine") && (currentState == NutState.chocolate || currentState == NutState.nutChocolate))
+        if (other.gameObject.CompareTag("FireMachine"))
         {
-            ChangeState(NutState.nut);
+        
+            gameObject.transform.parent = null;
+            nutManager.stack.Remove(gameObject);
+            Destroy(gameObject);
+           
+
+
         }
 
         if (other.gameObject.CompareTag("Punch"))
         {
-            Debug.Log(gameObject.name);
-            for(int i =nutManager.stack.IndexOf(gameObject);i < nutManager.stack.Count; i++)
+           
+            for(int i =nutManager.stack.IndexOf(gameObject);i < nutManager.stack.Count-1; i++)
             {
-                nutManager.stack.Remove(gameObject);
-                gameObject.transform.DOMoveX(-2, 3f);
+                if(nutManager.stack.Count <= 0 || i == 0) {
+                    return;
+                }
+                nutManager.stack[i].transform.parent = null;
+                nutManager.stack[i].transform.DOMoveX(-2, 3f);
+
+                nutManager.stack.Remove(nutManager.stack[i].gameObject);
+
             }
-            NutManager.Instance.ReOrder();
+           nutManager.ReOrder();
 
 
             other.gameObject.tag = "Untagged";
+
         }
 
         if (other.gameObject.CompareTag("Hand"))
@@ -135,9 +160,19 @@ public class nut : MonoBehaviour
 
             gameObject.transform.parent = HandTarget.transform;
             nutManager.ReOrder();
+            transform.DOMoveZ(-13.312f, 0.5f);
             other.gameObject.tag = "Untagged";
+
+            if (currentState == NutState.sheld) scoreManager.StackScore -= 10;
+            if (currentState == NutState.nut) scoreManager.StackScore -= 20;
+            if (currentState == NutState.chocolate) scoreManager.StackScore -= 40;
+            if (currentState == NutState.nutChocolate) scoreManager.StackScore -= 70;
+
+
+
+
         }
-        
+
     }
 
     public void Smash()
@@ -155,10 +190,9 @@ public class nut : MonoBehaviour
           
         }
 
-        //shattered.SetActive(false);
-
-
-
-
     }
+
+   
+
+
 }

@@ -25,7 +25,7 @@ public class NutManager : Singleton<NutManager>
     {
         for (int i = 0; i < stack.Count; i++)
         {
-            stack[i].transform.DOMoveZ(nutTarget.transform.position.z  -0.2f * i , 0.1f);
+            /stack[i].transform.DOMoveZ(nutTarget.transform.position.z  -0.2f * i , 0.1f);
         }
 
     }

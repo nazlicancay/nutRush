@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
             {
                 levels[index].SetActive(true);
                 
-                //Player.transform.DOMove()
+                //sPlayer.transform.DOMove()
             }
         }
        

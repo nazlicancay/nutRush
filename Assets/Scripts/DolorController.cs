@@ -27,12 +27,12 @@ public class DolorController : MonoBehaviour
     public void Dolor()
     {
 
-        for (int i = 10; i< score.StackScore; i += 10)
+        for (int i = 20; i< score.StackScore; i += 20)
         {
             GameObject newDolor = Instantiate(Dolar);
             dolors.Add(newDolor);
-            newDolor.transform.DOMoveY(target.position.y + 0.2f*i/10, 2f);
-            Player.transform.DOMoveY(target.position.y + 0.21f * i / 10, 2f);
+            newDolor.transform.DOMoveY(target.position.y + 0.2f*i/20, 2f);
+            Player.transform.DOMoveY(target.position.y + 0.2f * i / 20, 2f);
 
         }
 

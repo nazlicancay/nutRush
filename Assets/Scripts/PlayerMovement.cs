@@ -9,13 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public float swipeSpeed;
     public float maxLeftX;
     public float maxRightX;
-
+    public float Fspeed;
     public float speed;
     public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Fspeed = 1;
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (GameManager.Instance.GameActive)
             {
-                transform.position -= transform.forward * Time.deltaTime;
+                transform.position -= transform.forward * Time.deltaTime *Fspeed;
             }
         }
 

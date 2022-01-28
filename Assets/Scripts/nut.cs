@@ -177,9 +177,11 @@ public class nut : MonoBehaviour
             if (currentState == NutState.chocolate) scoreManager.StackScore -= 40;
             if (currentState == NutState.nutChocolate) scoreManager.StackScore -= 70;
 
+        }
 
-
-
+        if (other.gameObject.CompareTag("Finish"))
+        {
+           nutManager.MoveToPackage();
         }
 
     }

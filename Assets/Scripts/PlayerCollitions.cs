@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class PlayerCollitions : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class PlayerCollitions : MonoBehaviour
     public NutManager nutManager;
     public Collactor collactor;
     public ScoreManager scoreManager;
+    public DolorController dolorController;
+    public Vector3 handTarget = new Vector3();
     void Start()
     {
         
@@ -27,6 +31,22 @@ public class PlayerCollitions : MonoBehaviour
             //nutManager.ReOrder();
             collactor.Collact(other.gameObject);
             scoreManager.CalculateScore();
+        }
+
+        if (other.gameObject.CompareTag("AddDolor"))
+        {
+            GameManager.Instance.GameActive = false;
+
+            transform.DORotate(new Vector3(0, 0, 180f), 1f);
+            transform.DOMoveZ(-38,1f);
+            dolorController.Dolor();
+            
+
+
+
+
+
+
         }
     }
 }

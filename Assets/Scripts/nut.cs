@@ -124,6 +124,15 @@ public class nut : MonoBehaviour
 
         if (other.gameObject.CompareTag("FireMachine"))
         {
+            GameObject gm = gameObject;
+            int index =nutManager.stack.FindIndex(d => d == gameObject);
+            if(index != nutManager.stack.Count - 1)
+            {
+                nutManager.ReOrder();
+            }
+
+           
+
         
             gameObject.transform.parent = null;
             nutManager.stack.Remove(gameObject);

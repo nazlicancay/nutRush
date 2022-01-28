@@ -12,19 +12,29 @@ public class PlayerMovement : MonoBehaviour
     public float Fspeed;
     public float speed;
     public GameManager gameManager;
+    private bool Swipe = false;
+    private bool once = true;
     // Start is called before the first frame update
     void Start()
     {
-        Fspeed = 1;
+        Fspeed = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && once)
         {
-            gameManager.StartGame();
+           gameManager.StartGame();
+            once = false;
         }
+
+        if(Swipe)
+        {
+            //gameManager.StartGame();
+        }
+
+        
 
         if (GameManager.Instance.GameActive)
         {
@@ -54,8 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void InputUpdate(Vector2 delta)
     {
+        Swipe = true;
         if (GameManager.Instance.GameActive)
         {
+            
             Vector3 newPos = transform.position - new Vector3(delta.x * swipeSpeed * Time.deltaTime, 0, 0);
             newPos.x = Mathf.Clamp(newPos.x, maxRightX, maxLeftX);
             transform.position = newPos;

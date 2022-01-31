@@ -36,4 +36,6 @@ public class GameManager : Singleton<GameManager>
         player.transform.DORotate(new Vector3(0, 0, 180f), 1f);
         GameActive = true;
     }
+
+   
 }

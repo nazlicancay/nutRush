@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
     public Transform targets;
     public GameObject Player;
     public DolorController dolorController;
+    public NutManager nutManager;
+    public GameObject target;
+    public int levelCount;
 
     private void Awake()
     {
@@ -31,11 +34,15 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateLevel()
     {
-        int index = PlayerPrefs.GetInt("LevelNumber");
-
-        levels[index-1].SetActive(true);
+        nutManager.finsih = false;
+        target.transform.DOMove(new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z), 0.01f);
+        target.transform.parent = Player.transform;
+        nutManager.stack.Clear();
+        nutManager.stack.Add(target);
+        dolorController.DolorEnded = false;
         Player.transform.DOMove(new Vector3(targets.transform.position.x, targets.transform.position.y, targets.transform.position.z), 0.5f);
         GameManager.Instance.GameActive = true;
+
        
     }
 }

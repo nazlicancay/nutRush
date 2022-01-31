@@ -9,7 +9,7 @@ public class NutManager : Singleton<NutManager>
     public List<GameObject> stack = new List<GameObject>();
     public List<GameObject> packageTarget = new List<GameObject>();
     new Vector3 target;
-    bool finsih = false;
+    public bool finsih = false;
     public PlayerMovement Player;
 
     public GameObject nutTarget;
@@ -58,10 +58,15 @@ public class NutManager : Singleton<NutManager>
        
         for(int i = 0; i < packageTarget.Count-1; i++)
         {
-            stack[i].transform.parent = null;
-            target = new Vector3(packageTarget[i].transform.position.x, packageTarget[i].transform.position.y, packageTarget[i].transform.position.z);
-            stack[i].transform.DOMove(target, 4f);
-            Debug.Log("ilk for");
+            if(stack.Count > i)
+            {
+                stack[i].transform.parent = null;
+                target = new Vector3(packageTarget[i].transform.position.x, packageTarget[i].transform.position.y, packageTarget[i].transform.position.z);
+                stack[i].transform.DOMove(target, 4f);
+                Debug.Log("ilk for");
+
+            }
+            
         }
 
         if(packageTarget.Count < stack.Count)

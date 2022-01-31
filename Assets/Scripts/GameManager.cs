@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public bool GameEnded;
     public GameObject StartImange;
     public GameObject levelObj;
+    public GameObject player;
    
   
     // Start is called before the first frame update
@@ -32,7 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartLevel()
     {
-        transform.DORotate(new Vector3(0, 0, 180f), 1f);
+        player.transform.DORotate(new Vector3(0, 0, 180f), 1f);
         GameActive = true;
     }
 }

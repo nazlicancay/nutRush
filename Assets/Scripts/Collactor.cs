@@ -30,7 +30,7 @@ public class Collactor : MonoBehaviour
         if(nutManager.stack.Count != 0)
         {
             
-            lastItem = nutManager.stack[nutManager.stack.Count - 1];
+            lastItem = NutManager.Instance.stack[nutManager.stack.Count - 1];
         }
 
         nutManager.stack.Add(other.gameObject);
@@ -39,7 +39,7 @@ public class Collactor : MonoBehaviour
 
         _stackObj = other.gameObject;
 
-        _stackObj.transform.position = new Vector3(nutManager.nutTarget.transform.position.x, _stackObj.transform.position.y, lastItem.transform.position.z -0.2f);
+        _stackObj.transform.position = new Vector3(NutManager.Instance.nutTarget.transform.position.x, _stackObj.transform.position.y, lastItem.transform.position.z -0.2f);
         _stackObj.transform.parent = nutManager.nutTarget.transform;
 
         _stackObj.AddComponent<Collactor>();

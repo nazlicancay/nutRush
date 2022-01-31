@@ -13,6 +13,13 @@ public class DolorController : MonoBehaviour
     public List<GameObject> dolors = new List<GameObject>();
     private float incy;
     public Transform target;
+    public bool DolorEnded = false;
+    public LevelManager levelManager;
+    private void Awake()
+
+    {
+        //PlayerPrefs.SetInt("LeveNum", 1);
+    }
     void Start() 
     {
         
@@ -22,19 +29,25 @@ public class DolorController : MonoBehaviour
     void Update()
     {
         
+       
+        
     }
 
     public void Dolor()
     {
 
-        for (int i = 20; i< score.StackScore; i += 20)
+        for (int i = 10; i< score.StackScore; i += 10)
         {
             GameObject newDolor = Instantiate(Dolar);
             dolors.Add(newDolor);
-            newDolor.transform.DOMoveY(target.position.y + 0.2f*i/20, 2f);
-            Player.transform.DOMoveY(target.position.y + 0.2f * i / 20, 2f);
+            newDolor.transform.DOMoveY(target.position.y + 0.1f*i/10, 2f);
+            Player.transform.DOMoveY(target.position.y + 0.1f * i / 10, 2f).OnComplete(() => DolorEnded = true);
 
         }
+        Debug.Log("şfafa");
+        PlayerPrefs.SetInt("LevelNumber", PlayerPrefs.GetInt("LevelNumber") + 1);
+
+
 
 
 

@@ -53,21 +53,30 @@ public class NutManager : Singleton<NutManager>
 
     public void MoveToPackage()
     {
-        //Player.Fspeed = 0.8f;
         finsih = true;
         stack.Reverse();
-        for(int i = 0; i < packageTarget.Count; i++)
+       
+        for(int i = 0; i < packageTarget.Count-1; i++)
         {
             stack[i].transform.parent = null;
-             target = new Vector3(packageTarget[i].transform.position.x, packageTarget[i].transform.position.y, packageTarget[i].transform.position.z);
+            target = new Vector3(packageTarget[i].transform.position.x, packageTarget[i].transform.position.y, packageTarget[i].transform.position.z);
             stack[i].transform.DOMove(target, 4f);
-            j = i;
+            Debug.Log("ilk for");
         }
 
-        for (; j < stack.Count - 1; j++)
+        if(packageTarget.Count < stack.Count)
         {
-            stack[j].transform.parent = null;
-            stack[j].gameObject.SetActive(false);
+            for(int i = packageTarget.Count-1; i< stack.Count; i++)
+            {
+                stack[i].transform.parent = null;
+                stack[i].gameObject.SetActive(false);
+                Debug.Log("ikinci for");
+
+            }
+        }
+        //for (; j < stack.Count; j++)
+        {
+           
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -26,6 +27,12 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         StartImange.SetActive(false);
+        GameActive = true;
+    }
+
+    public void StartLevel()
+    {
+        transform.DORotate(new Vector3(0, 0, 180f), 1f);
         GameActive = true;
     }
 }

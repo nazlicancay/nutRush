@@ -17,6 +17,7 @@ public class nut : MonoBehaviour
     public NutManager nutManager;
     public GameObject HandTarget;
     public ScoreManager scoreManager;
+    public NutManager managernut;
 
 
 

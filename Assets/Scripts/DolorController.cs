@@ -11,7 +11,6 @@ public class DolorController : MonoBehaviour
     public ScoreManager score;
     public GameObject Player;
     public List<GameObject> dolors = new List<GameObject>();
-    private float incy;
     public Transform target;
     public bool DolorEnded = false;
     public LevelManager levelManager;

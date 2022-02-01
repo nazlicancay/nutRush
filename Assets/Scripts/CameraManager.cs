@@ -21,7 +21,8 @@ public class CameraManager : MonoBehaviour
     {
         if (!GameManager.Instance.GameActive)
         {
-            cm.transform.DOMove(new Vector3(cm.transform.position.x, cm.transform.position.y,cm.transform.position.z),1f);
+            Debug.Log("kamera");
+            cm.transform.DOMove(new Vector3(finalCamTarget.transform.position.x, finalCamTarget.transform.position.y,finalCamTarget.transform.position.z),0.1f);
         }
         
     }

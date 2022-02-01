@@ -8,6 +8,8 @@ public class NutManager : Singleton<NutManager>
     // Start is called before the first frame update
     public List<GameObject> stack = new List<GameObject>();
     public List<GameObject> packageTarget = new List<GameObject>();
+    public List<GameObject> packagenuts = new List<GameObject>();
+
     new Vector3 target;
     public bool finsih = false;
     public PlayerMovement Player;
@@ -61,6 +63,7 @@ public class NutManager : Singleton<NutManager>
             if(stack.Count > i)
             {
                 stack[i].transform.parent = null;
+                packagenuts.Add(stack[i]);
                 target = new Vector3(packageTarget[i].transform.position.x, packageTarget[i].transform.position.y, packageTarget[i].transform.position.z);
                 stack[i].transform.DOMove(target, 4f);
                 Debug.Log("ilk for");

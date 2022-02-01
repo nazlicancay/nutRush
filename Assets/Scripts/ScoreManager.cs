@@ -6,8 +6,7 @@ using TMPro;
 public class ScoreManager : Singleton<ScoreManager>
 {
     // Start is called before the first frame update
-    public static int GameScore;
-    public TextMeshProUGUI Text;
+    public int GameScore;
     public TextMeshProUGUI StackText;
 
     public NutManager nutManager;
@@ -22,9 +21,8 @@ public class ScoreManager : Singleton<ScoreManager>
     // Update is called once per frame
     void Update()
     {
-        Text.text = GameScore.ToString();
         StackText.text = StackScore.ToString();
-        PlayerPrefs.SetInt("GameScore", StackScore);
+       
 
 
     }
@@ -44,6 +42,13 @@ public class ScoreManager : Singleton<ScoreManager>
         StackScore += i;
         StackText.text = StackScore.ToString();
 
+
+    }
+
+    public int addGameScore()
+    {
+        GameScore += StackScore;
+        return GameScore;
 
     }
 

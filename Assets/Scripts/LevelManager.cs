@@ -27,11 +27,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dolorController.DolorEnded)
-        {
-            UpdateLevel();
-            GameManager.Instance.StartLevel();
-        }
+       
     }
 
     public void UpdateLevel()

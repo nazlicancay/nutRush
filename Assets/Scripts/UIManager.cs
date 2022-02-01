@@ -10,8 +10,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI dolarCount;
     public LevelManager levelManager;
     public ScoreManager scoreManager;
-    public Image Heart;
-    public float waitTime = 30.0f;
+    public GameObject AllHeart;
+    public DolorController dolorController;
+    public HeartFill heartFill;
+    public Button nextlevelbutton;
 
     void Start()
     {
@@ -21,11 +23,18 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (levelManager.NextLevel)
+        if (dolorController.DolorEnded)
         {
-            dolarCount.text = (PlayerPrefs.GetInt("GameScore").ToString());
-            Heart.fillAmount  -= 1.0f / waitTime * Time.deltaTime;
+            AllHeart.SetActive(true);
+            scoreManager.addGameScore();
+            dolarCount.text = scoreManager.addGameScore().ToString();
+            dolorController.DolorEnded = false;
 
+          
+        }
+        if (heartFill.heartFilled)
+        {
+            nextlevelbutton.gameObject.SetActive(true);
         }
     }
 }
